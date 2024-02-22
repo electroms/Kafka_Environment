@@ -1,7 +1,7 @@
 # Voir fichier de configuration docker-compose.yml en pièce jointe: 
 
-yum install varnish
-yum install ca-certificates
+dnf install varnish
+dnf install ca-certificates
 
 curl gnupg lsb-release
 
@@ -10,9 +10,9 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/centos/7/aarch64/stable/Packages/"
 
- yum update
- yum install docker-ce docker-ce-cli containerd.io
- yum install docker-compose
+ dnf update
+ dnf install docker-ce docker-ce-cli containerd.io
+ dnf install docker-compose
 
 # Après avoir créer le fichier docker-compose.yml
 
