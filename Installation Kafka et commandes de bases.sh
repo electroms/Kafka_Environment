@@ -5,14 +5,15 @@ apt-get install ca-certificates
 
 curl gnupg lsb-release
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list 
+  
+curl -fsSL https://download.docker.com/linux/debian/gpg |
+  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://https://download.docker.com/linux/debian/dists/bookworm/stable/packages"
 
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io
-apt-get install docker-compose
 
 # Après avoir créer le fichier docker-compose.yml
 
@@ -23,8 +24,8 @@ systemctl start docker
 
 # et Exécuter la commande : 
 
-docker-compose up -d
-docker-compose ps
+docker compose up -d
+docker compose ps
 docker ps
 
 # Afficher les logs : 
@@ -33,9 +34,9 @@ docker logs --follow kafka
 
 # Afficher les logs, en mode non verbeux :
 
-docker-compose logs kafka | grep -i started
+docker compose logs kafka | grep -i started
 docker ps
-docker-compose ps
+docker compose ps
 
 # Entrer dans la console Kafka :
 
